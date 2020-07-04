@@ -1,0 +1,135 @@
+# vsim -do {run -all} -c -novopt top 
+# //  Questa Sim-64
+# //  Version 10.1e linux_x86_64 Jun 11 2013
+# //
+# //  Copyright 1991-2013 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# Refreshing /nfs/home/a/a_prabak/Questa/FHV_FINAL/calc_2_test2/work.top
+# Loading sv_std.std
+# Loading work.top
+# Refreshing /nfs/home/a/a_prabak/Questa/FHV_FINAL/calc_2_test2/work.calc_if
+# Loading work.calc_if
+# Refreshing /nfs/home/a/a_prabak/Questa/FHV_FINAL/calc_2_test2/work.test
+# Refreshing /nfs/home/a/a_prabak/Questa/FHV_FINAL/calc_2_test2/work.A
+# Loading work.A
+# Loading work.test
+# Refreshing /nfs/home/a/a_prabak/Questa/FHV_FINAL/calc_2_test2/work.calc2_top
+# Loading work.calc2_top
+# Refreshing /nfs/home/a/a_prabak/Questa/FHV_FINAL/calc_2_test2/work.adder
+# Loading work.adder
+# Refreshing /nfs/home/a/a_prabak/Questa/FHV_FINAL/calc_2_test2/work.alu_input_stage
+# Loading work.alu_input_stage
+# Refreshing /nfs/home/a/a_prabak/Questa/FHV_FINAL/calc_2_test2/work.alu_output_stage
+# Loading work.alu_output_stage
+# Refreshing /nfs/home/a/a_prabak/Questa/FHV_FINAL/calc_2_test2/work.holdreg
+# Loading work.holdreg
+# Refreshing /nfs/home/a/a_prabak/Questa/FHV_FINAL/calc_2_test2/work.mux_out
+# Loading work.mux_out
+# Refreshing /nfs/home/a/a_prabak/Questa/FHV_FINAL/calc_2_test2/work.priority
+# Loading work.priority
+# Refreshing /nfs/home/a/a_prabak/Questa/FHV_FINAL/calc_2_test2/work.shifter
+# Loading work.shifter
+# ** Warning: (vsim-3017) hdl/calc2_top.v(275): [TFMPC] - Too few port connections. Expected 41, found 40.
+#         Region: /top/c1/priority1
+# run -all 
+#                    0 : ------------starting calc driver----------
+# 
+# 
+#                    0 : scoreboard for           1 transactions
+#                  250 : reset complete 
+# 
+#                  250 : max transaction count =           1 
+# 
+#  Coverage
+#                  250 : generator transaction count no.           0
+#                  250 : generator PORTA opcode :  2  dataa : 00002345 datab : 00000005	tag: 3 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  250 : generator PORTB opcode :  2  dataa : aaaaaaaa datab : aaaaaaab	tag: 1 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  250 : generator PORTC opcode :  2  dataa : 000abb56 datab : 000abb56	tag: 3 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                  250 : generator PORTD opcode :  2  dataa : eeeaffff datab : aaeaffff	tag: 2 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+#                  250 : generator to scoreboard PORTA opcode :  2  dataa : 00002345 datab : 00000005	tag: 3 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  250 : generator to scoreboard PORTB opcode :  2  dataa : aaaaaaaa datab : aaaaaaab	tag: 1 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  250 : generator to scoreboard PORTC opcode :  2  dataa : 000abb56 datab : 000abb56	tag: 3 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                  250 : generator to scoreboard PORTD opcode :  2  dataa : eeeaffff datab : aaeaffff	tag: 2 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+#                  250 : ending generator
+# 
+#                  250 : Driver PORTA opcode :  2  dataa : 00002345 datab : 00000005	tag: 3 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  250 : Driver PORTB opcode :  2  dataa : aaaaaaaa datab : aaaaaaab	tag: 1 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  250 : Driver PORTC opcode :  2  dataa : 000abb56 datab : 000abb56	tag: 3 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                  250 : Driver PORTD opcode :  2  dataa : eeeaffff datab : aaeaffff	tag: 2 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+# 
+#                  350 : ------------Sending data-1 on all port of dut----------
+# 
+#                  350: 1 trans.my_cmda 2
+#                  350: 1 trans.my_dataa 00002345
+#                  350: 1 trans.reqtag_a 3
+#                  350: 2 trans.my_cmdb 2
+#                  350: 2 trans.my_datab aaaaaaaa
+#                  350: 2 trans.reqtag_b 1
+#                  350: 3 trans.my_cmdc 2
+#                  350: 3 trans.my_datac 000abb56
+#                  350: 3 trans.reqtag_c 3
+#                  350: 4 trans.my_cmdd 2
+#                  350: 4 trans.my_datad eeeaffff
+#                  350: 4 trans.reqtag_d 2
+# 
+# 
+#                  450 : ------------Sending data-2 on all port of dut----------
+# 
+#                  450: 1 trans.my_cmda 2
+#                  450 : 1 trans.my_datab 00000005
+#                  450: 2 trans.my_cmdb 2
+#                  450 : 2 trans.my_datab aaaaaaab
+#                  450: 3 trans.my_cmdc 2
+#                  450 : 3 trans.my_datab 000abb56
+#                  450: 4 trans.my_cmdd 2
+#                  450 : 4 trans.my_datab aaeaffff
+# 
+# 
+#                  750   ----------Monitor Recieving data from Port -A out of Dut----------
+#                  750 : out_respa 1
+#                  750 : out_dataa 00002340
+#                  750 : out_tag_a 3
+# 
+#                  850   ----------Monitor Recieving data from Port -B out of Dut----------
+#                  850 : out_respb 2
+#                  850 : out_datab ffffffff
+#                  850 : out_tag_b 1
+# 
+#                  950   ----------Monitor Recieving data from Port -C out of Dut----------
+#                  950 : out_respc 1
+#                  950 : out_datac 00000000
+#                  950 : out_tag_c 3
+# 
+#                 1050   ----------Monitor Recieving data from Port -D out of Dut----------
+#                 1050 : out_respd 1
+#                 1050 : out_datad 44000000
+#                 1050 : out_tag_d 2
+# 
+#                 1050 : Scoreboard vals from generator PORTA opcode :  2  dataa : 00002345 datab : 00000005	tag: 3 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 1050 : Scoreboard vals from generator PORTB opcode :  2  dataa : aaaaaaaa datab : aaaaaaab	tag: 1 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 1050 : Scoreboard vals from generator PORTC opcode :  2  dataa : 000abb56 datab : 000abb56	tag: 3 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                 1050 : Scoreboard vals from generator PORTD opcode :  2  dataa : eeeaffff datab : aaeaffff	tag: 2 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+# 
+#                 1050 : Scoreboard vals from DUT PORT-A PORTA response : 1  out-data1 : 00002340 out-tag1 : 3
+#                 1050 : Scoreboard vals from DUT PORT-B PORTB response : 2  out-data2 : ffffffff out-tag2 : 1
+#                 1050 : Scoreboard vals from DUT PORT-C PORTC response : 1  out-data3 : 00000000 out-tag3 : 3
+#                 1050 : Scoreboard vals from DUT PORT-D PORTD response : 1  out-data4 : 44000000 out-tag4 : 2
+# 
+#                 1050 : Both Data and Tag match at PORT-A
+#                 1050 : Congrats on data and tag Match!! : PORT-A expected data : 00002340  output_data : 00002340 expected tag : 3 output_tag: 3
+# 
+#                 1050 : Match! Congrats!! : PORT-B overflow/underflow or invalid command 2
+# 
+#                 1050 : Both Data and Tag match at PORT-C
+#                 1050 : Congrats on data and tag Match!! : PORT-C expected data : 00000000  output_data : 00000000 expected tag : 3 output_tag : 3
+# 
+#                 1050 : Both Data and Tag match at PORT-D
+#                 1050 : Congrats on data and tag Match!! : PORT-D expected data : 44000000  output_data : 44000000 expected tag : 2 output_tag : 2
+# 
+# ** Note: $finish    : test/test.sv(24)
+#    Time: 1050 ns  Iteration: 2  Instance: /top/t1

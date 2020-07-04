@@ -1,0 +1,836 @@
+# vsim -do {run -all} -c -novopt top 
+# //  Questa Sim-64
+# //  Version 10.1e linux_x86_64 Jun 11 2013
+# //
+# //  Copyright 1991-2013 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.top
+# Loading sv_std.std
+# Loading work.top
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.calc_if
+# Loading work.calc_if
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.test
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.A
+# Loading work.A
+# Loading work.test
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.calc3_top
+# Loading work.calc3_top
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.holdreg
+# Loading work.holdreg
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.priority
+# Loading work.priority
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.adder_input_stage
+# Loading work.adder_input_stage
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.shift_input_stage
+# Loading work.shift_input_stage
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.registers
+# Loading work.registers
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.adder
+# Loading work.adder
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.shifter
+# Loading work.shifter
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.adder_output_stage
+# Loading work.adder_output_stage
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.shift_output_stage
+# Loading work.shift_output_stage
+# Refreshing /nfs/home/a/a_ravind/Documents/proj/calc3-final/work.mux_out
+# Loading work.mux_out
+# run -all 
+#                    0 : ------------starting calc driver----------
+# 
+# 
+#                    0 : scoreboard for           9 transactions
+#                  650 : reset complete 
+# 
+#                  650 : max transaction count =           9 
+# 
+#                  650 : generator transaction count no.           0
+#                  650 : generator PORTA opcode :  9  dataa :  00000001	tag: 0 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator PORTB opcode : 10  dataa :   9318b1b8	tag: 2 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator PORTC opcode :  6  dataa :  52f19689	tag: 2 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                  650 : generator PORTD opcode : 10  dataa :  b5a7165d	tag: 2 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+#                  650 : generator to scoreboard PORTA opcode :  9  dataa :  00000001	tag: 0 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator to scoreboard PORTB opcode : 10  dataa :   9318b1b8	tag: 2 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator to scoreboard PORTC opcode :  6  dataa :  52f19689	tag: 2 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                  650 : generator to scoreboard PORTD opcode : 10  dataa :  b5a7165d	tag: 2 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+#                  650 : generator transaction count no.           1
+#                  650 : generator PORTA opcode :  9  dataa :  00000001	tag: 1 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator PORTB opcode :  9  dataa :   6d0772d4	tag: 0 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator PORTC opcode :  2  dataa :  b4c57532	tag: 3 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                  650 : generator PORTD opcode :  5  dataa :  eb9492d4	tag: 1 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+#                  650 : generator to scoreboard PORTA opcode :  9  dataa :  00000001	tag: 1 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator to scoreboard PORTB opcode :  9  dataa :   6d0772d4	tag: 0 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator to scoreboard PORTC opcode :  2  dataa :  b4c57532	tag: 3 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                  650 : generator to scoreboard PORTD opcode :  5  dataa :  eb9492d4	tag: 1 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+#                  650 : generator transaction count no.           2
+#                  650 : generator PORTA opcode :  9  dataa :  00000001	tag: 2 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator PORTB opcode : 10  dataa :   c2607f9a	tag: 3 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator PORTC opcode :  6  dataa :  e42debe4	tag: 0 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                  650 : generator PORTD opcode :  2  dataa :  43e4ae4a	tag: 3 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+#                  650 : generator to scoreboard PORTA opcode :  9  dataa :  00000001	tag: 2 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator to scoreboard PORTB opcode : 10  dataa :   c2607f9a	tag: 3 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator to scoreboard PORTC opcode :  6  dataa :  e42debe4	tag: 0 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                  650 : generator to scoreboard PORTD opcode :  2  dataa :  43e4ae4a	tag: 3 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+#                  650 : generator transaction count no.           3
+#                  650 : generator PORTA opcode :  9  dataa :  ffffffff	tag: 3 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator PORTB opcode :  2  dataa :   30e233f4	tag: 1 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator PORTC opcode :  5  dataa :  70ddddc0	tag: 1 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                  650 : generator PORTD opcode :  9  dataa :  9f758cb7	tag: 0 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+#                  650 : generator to scoreboard PORTA opcode :  9  dataa :  ffffffff	tag: 3 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator to scoreboard PORTB opcode :  2  dataa :   30e233f4	tag: 1 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator to scoreboard PORTC opcode :  5  dataa :  70ddddc0	tag: 1 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                  650 : generator to scoreboard PORTD opcode :  9  dataa :  9f758cb7	tag: 0 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+#                  650 : generator transaction count no.           4
+#                  650 : generator PORTA opcode :  9  dataa :  00000001	tag: 3 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator PORTB opcode :  5  dataa :   c2132256	tag: 1 ALU_count_b:           0 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator PORTC opcode :  6  dataa :  833a9df9	tag: 0 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                  650 : generator PORTD opcode :  6  dataa :  5be3ff3c	tag: 2 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+#                  650 : generator to scoreboard PORTA opcode :  9  dataa :  00000001	tag: 3 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator to scoreboard PORTB opcode :  5  dataa :   c2132256	tag: 1 ALU_count_b:           0 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator to scoreboard PORTC opcode :  6  dataa :  833a9df9	tag: 0 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                  650 : generator to scoreboard PORTD opcode :  6  dataa :  5be3ff3c	tag: 2 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+#                  650 : generator transaction count no.           5
+#                  650 : generator PORTA opcode :  9  dataa :  00000001	tag: 1 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator PORTB opcode :  1  dataa :   28ae6b4b	tag: 2 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator PORTC opcode : 10  dataa :  79784b35	tag: 3 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                  650 : generator PORTD opcode :  5  dataa :  d6286fa1	tag: 3 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+#                  650 : generator to scoreboard PORTA opcode :  9  dataa :  00000001	tag: 1 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator to scoreboard PORTB opcode :  1  dataa :   28ae6b4b	tag: 2 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator to scoreboard PORTC opcode : 10  dataa :  79784b35	tag: 3 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                  650 : generator to scoreboard PORTD opcode :  5  dataa :  d6286fa1	tag: 3 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+#                  650 : generator transaction count no.           6
+#                  650 : generator PORTA opcode :  9  dataa :  00000001	tag: 2 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator PORTB opcode : 10  dataa :   e77a9183	tag: 3 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator PORTC opcode : 10  dataa :  86aa1825	tag: 1 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                  650 : generator PORTD opcode :  6  dataa :  49fb3f9c	tag: 0 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+#                  650 : generator to scoreboard PORTA opcode :  9  dataa :  00000001	tag: 2 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator to scoreboard PORTB opcode : 10  dataa :   e77a9183	tag: 3 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator to scoreboard PORTC opcode : 10  dataa :  86aa1825	tag: 1 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                  650 : generator to scoreboard PORTD opcode :  6  dataa :  49fb3f9c	tag: 0 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+#                  650 : generator transaction count no.           7
+#                  650 : generator PORTA opcode :  9  dataa :  00000001	tag: 0 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator PORTB opcode :  1  dataa :   9606892a	tag: 0 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator PORTC opcode : 10  dataa :  bba31072	tag: 2 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                  650 : generator PORTD opcode :  1  dataa :  ec9104dc	tag: 1 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+#                  650 : generator to scoreboard PORTA opcode :  9  dataa :  00000001	tag: 0 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator to scoreboard PORTB opcode :  1  dataa :   9606892a	tag: 0 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator to scoreboard PORTC opcode : 10  dataa :  bba31072	tag: 2 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                  650 : generator to scoreboard PORTD opcode :  1  dataa :  ec9104dc	tag: 1 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+#                  650 : generator transaction count no.           8
+#                  650 : generator PORTA opcode :  9  dataa :  00000001	tag: 1 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator PORTB opcode : 10  dataa :   71e85350	tag: 0 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator PORTC opcode : 10  dataa :  08319205	tag: 0 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                  650 : generator PORTD opcode :  2  dataa :  bf74d3c7	tag: 0 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+#                  650 : generator to scoreboard PORTA opcode :  9  dataa :  00000001	tag: 1 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : generator to scoreboard PORTB opcode : 10  dataa :   71e85350	tag: 0 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : generator to scoreboard PORTC opcode : 10  dataa :  08319205	tag: 0 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                  650 : generator to scoreboard PORTD opcode :  2  dataa :  bf74d3c7	tag: 0 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+#                  650 : ending generator
+# 
+#                  650 : Driver PORTA opcode :  9  dataa :  00000001	tag: 0 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                  650 : Driver PORTB opcode : 10  dataa :   9318b1b8	tag: 2 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                  650 : Driver PORTC opcode :  6  dataa :  52f19689	tag: 2 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                  650 : Driver PORTD opcode : 10  dataa :  b5a7165d	tag: 2 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+# 
+#                  750 : ------------Sending data-1 on all port of dut----------
+# 
+#                  750: 1 trans.my_cmda 9
+#                  750: A trans.my_dataa 00000001
+#                  750: A trans.reqtag_a 0
+#                  750: A trans.reqa_d1 a
+#                  750: A trans.reqa_d2 f
+#                  750: A trans.reqa_r1 f
+#                  750: 
+#  
+#  2 trans.my_cmdb a
+#                  750: B trans.my_datab 9318b1b8
+#                  750: B trans.reqtag_b 2
+#                  750: B trans.reqb_d1 0
+#                  750: B trans.reqb_d2 6
+#                  750: B trans.reqb_r1 6
+#                  750:
+#  
+#  3 trans.my_cmdc 6
+#                  750: C trans.my_datac 52f19689
+#                  750: C trans.reqtag_c 2
+#                  750: C trans.reqc_d1 5
+#                  750: C trans.reqc_d2 e
+#                  750: C trans.reqc_r1 7
+#                  750: 
+#  
+#  4 trans.my_cmdd a
+#                  750: D trans.my_datad b5a7165d
+#                  750: D trans.reqtag_d 2
+# 
+#                  750: D trans.reqd_d1 c
+#                  750: D trans.reqd_d2 f
+#                  750: D trans.reqd_r1 5
+# 
+#                 1150   ----------Monitor Recieving data from Port -A out of Dut----------
+#                 1150 : out_respa 1
+#                 1150 : out_dataa 00000000
+#                 1150 : out_tag_a 0
+# 
+#                 1250   ----------Monitor Recieving data from Port -B out of Dut----------
+#                 1250 : out_respb 1
+#                 1250 : out_datab 00000000
+#                 1250 : out_tag_b 2
+# 
+#                 1350   ----------Monitor Recieving data from Port -C out of Dut----------
+#                 1350 : out_respc 1
+#                 1350 : out_datac 00000000
+#                 1350 : out_tag_c 2
+# 
+#                 1450   ----------Monitor Recieving data from Port -D out of Dut----------
+#                 1450 : out_respd 1
+#                 1450 : out_datad 00000000
+#                 1450 : out_tag_d 2
+# 
+#                 1450 : Scoreboard vals from generator PORTA opcode :  9  dataa :  00000001	tag: 0 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 1450 : Scoreboard vals from generator PORTB opcode : 10  dataa :   9318b1b8	tag: 2 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 1450 : Scoreboard vals from generator PORTC opcode :  6  dataa :  52f19689	tag: 2 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                 1450 : Scoreboard vals from generator PORTD opcode : 10  dataa :  b5a7165d	tag: 2 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+# 
+#                 1450 : Scoreboard vals from DUT PORT-A PORTA response : 1  out-data1 : 00000000 out-tag1 : 0
+#                 1450 : Scoreboard vals from DUT PORT-B PORTB response : 1  out-data2 : 00000000 out-tag2 : 2
+#                 1450 : Scoreboard vals from DUT PORT-C PORTC response : 1  out-data3 : 00000000 out-tag3 : 2
+#                 1450 : Scoreboard vals from DUT PORT-D PORTD response : 1  out-data4 : 00000000 out-tag4 : 2
+# 
+#                 1450comp_reg:          1
+#                 1450 :  Tag match: PORT-A expected tag : 0 output_tag: 0
+# 
+#                 1450 : Match : PORT-B Response match 1
+# 
+#                 1450 : Match : PORT-C Response match 1
+# 
+#                 1450 : ERROR! Both Data and Tag doesnot match: PORT-D expected data : 0000000c  output_data : 00000000 expected tag : 0 output_tag: 2
+# 
+#                 1550 : monitor PORTB response : 1  out-data2 : 00000000 out-tag2 : 2
+#                 1550 : monitor PORTC response : 1  out-data3 : 00000000 out-tag3 : 2
+#                 1550 : monitor PORTD response : 1  out-data4 : 00000000 out-tag4 : 2
+# 
+# 
+#                 1650   ----------Monitor Recieving data from Port -B out of Dut----------
+#                 1650 : out_respb 1
+#                 1650 : out_datab 00000000
+#                 1650 : out_tag_b 2
+# 
+#                 1650   ----------Monitor Recieving data from Port -A out of Dut----------
+#                 1650 : out_respa 0
+#                 1650 : out_dataa 00000000
+#                 1650 : out_tag_a 0
+# 
+#                 1750   ----------Monitor Recieving data from Port -C out of Dut----------
+#                 1750 : out_respc 1
+#                 1750 : out_datac 00000000
+#                 1750 : out_tag_c 2
+#                 1750 : Driver PORTA opcode :  9  dataa :  00000001	tag: 1 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 1750 : Driver PORTB opcode :  9  dataa :   6d0772d4	tag: 0 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 1750 : Driver PORTC opcode :  2  dataa :  b4c57532	tag: 3 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                 1750 : Driver PORTD opcode :  5  dataa :  eb9492d4	tag: 1 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+# 
+#                 1850 : ------------Sending data-1 on all port of dut----------
+# 
+#                 1850: 1 trans.my_cmda 9
+#                 1850: A trans.my_dataa 00000001
+#                 1850: A trans.reqtag_a 1
+#                 1850: A trans.reqa_d1 8
+#                 1850: A trans.reqa_d2 b
+#                 1850: A trans.reqa_r1 e
+#                 1850: 
+#  
+#  2 trans.my_cmdb 9
+#                 1850: B trans.my_datab 6d0772d4
+#                 1850: B trans.reqtag_b 0
+#                 1850: B trans.reqb_d1 e
+#                 1850: B trans.reqb_d2 2
+#                 1850: B trans.reqb_r1 6
+#                 1850:
+#  
+#  3 trans.my_cmdc 2
+#                 1850: C trans.my_datac b4c57532
+#                 1850: C trans.reqtag_c 3
+#                 1850: C trans.reqc_d1 f
+#                 1850: C trans.reqc_d2 e
+#                 1850: C trans.reqc_r1 9
+#                 1850: 
+#  
+#  4 trans.my_cmdd 5
+#                 1850: D trans.my_datad eb9492d4
+#                 1850: D trans.reqtag_d 1
+# 
+#                 1850: D trans.reqd_d1 c
+#                 1850: D trans.reqd_d2 d
+#                 1850: D trans.reqd_r1 5
+# 
+#                 1850   ----------Monitor Recieving data from Port -D out of Dut----------
+#                 1850 : out_respd 1
+#                 1850 : out_datad 00000000
+#                 1850 : out_tag_d 2
+# 
+#                 1850 : Scoreboard vals from generator PORTA opcode :  9  dataa :  00000001	tag: 1 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 1850 : Scoreboard vals from generator PORTB opcode :  9  dataa :   6d0772d4	tag: 0 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 1850 : Scoreboard vals from generator PORTC opcode :  2  dataa :  b4c57532	tag: 3 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                 1850 : Scoreboard vals from generator PORTD opcode :  5  dataa :  eb9492d4	tag: 1 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+# 
+#                 1850 : Scoreboard vals from DUT PORT-A PORTA response : 0  out-data1 : 00000000 out-tag1 : 0
+#                 1850 : Scoreboard vals from DUT PORT-B PORTB response : 1  out-data2 : 00000000 out-tag2 : 2
+#                 1850 : Scoreboard vals from DUT PORT-C PORTC response : 1  out-data3 : 00000000 out-tag3 : 2
+#                 1850 : Scoreboard vals from DUT PORT-D PORTD response : 1  out-data4 : 00000000 out-tag4 : 2
+# 
+#                 1850comp_reg:          1
+#                 1850comp_reg: 1829204692
+#                 1850 : ERROR! : PORT-A overflow/underflow or invalid command 0
+# 
+#                 1850 : Match : PORT-B Response match 1
+# 
+#                 1850 : ERROR! Tag doesnot match: PORT-C expected tag : 3 output_tag: 2
+# 
+#                 1850 : Match : PORT-D Response match 1
+# 
+#                 1950 : monitor PORTB response : 1  out-data2 : 00000000 out-tag2 : 2
+#                 1950 : monitor PORTC response : 1  out-data3 : 00000000 out-tag3 : 2
+#                 1950 : monitor PORTD response : 1  out-data4 : 00000000 out-tag4 : 2
+# 
+# 
+#                 2050   ----------Monitor Recieving data from Port -B out of Dut----------
+#                 2050 : out_respb 1
+#                 2050 : out_datab 00000000
+#                 2050 : out_tag_b 2
+# 
+#                 2050   ----------Monitor Recieving data from Port -A out of Dut----------
+#                 2050 : out_respa 0
+#                 2050 : out_dataa 00000000
+#                 2050 : out_tag_a 0
+# 
+#                 2150   ----------Monitor Recieving data from Port -C out of Dut----------
+#                 2150 : out_respc 1
+#                 2150 : out_datac 00000000
+#                 2150 : out_tag_c 2
+# 
+#                 2250   ----------Monitor Recieving data from Port -D out of Dut----------
+#                 2250 : out_respd 1
+#                 2250 : out_datad 00000000
+#                 2250 : out_tag_d 2
+# 
+#                 2250 : Scoreboard vals from generator PORTA opcode :  9  dataa :  00000001	tag: 2 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 2250 : Scoreboard vals from generator PORTB opcode : 10  dataa :   c2607f9a	tag: 3 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 2250 : Scoreboard vals from generator PORTC opcode :  6  dataa :  e42debe4	tag: 0 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                 2250 : Scoreboard vals from generator PORTD opcode :  2  dataa :  43e4ae4a	tag: 3 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+# 
+#                 2250 : Scoreboard vals from DUT PORT-A PORTA response : 0  out-data1 : 00000000 out-tag1 : 0
+#                 2250 : Scoreboard vals from DUT PORT-B PORTB response : 1  out-data2 : 00000000 out-tag2 : 2
+#                 2250 : Scoreboard vals from DUT PORT-C PORTC response : 1  out-data3 : 00000000 out-tag3 : 2
+#                 2250 : Scoreboard vals from DUT PORT-D PORTD response : 1  out-data4 : 00000000 out-tag4 : 2
+# 
+#                 2250comp_reg:          1
+#                 2250 : ERROR! : PORT-A overflow/underflow or invalid command 0
+# 
+#                 2250 : Match : PORT-B Response match 1
+# 
+#                 2250 : Match : PORT-C Response match 1
+# 
+#                 2250 : ERROR! Tag doesnot match: PORT-D expected tag : 3 output_tag: 2
+# 
+#                 2350 : monitor PORTB response : 1  out-data2 : 00000000 out-tag2 : 2
+#                 2350 : monitor PORTC response : 1  out-data3 : 00000000 out-tag3 : 2
+#                 2350 : monitor PORTD response : 1  out-data4 : 00000000 out-tag4 : 2
+# 
+# 
+#                 2450   ----------Monitor Recieving data from Port -B out of Dut----------
+#                 2450 : out_respb 1
+#                 2450 : out_datab 00000000
+#                 2450 : out_tag_b 0
+# 
+#                 2450   ----------Monitor Recieving data from Port -A out of Dut----------
+#                 2450 : out_respa 0
+#                 2450 : out_dataa 00000000
+#                 2450 : out_tag_a 0
+# 
+#                 2550   ----------Monitor Recieving data from Port -D out of Dut----------
+#                 2550 : out_respd 1
+#                 2550 : out_datad 00000000
+#                 2550 : out_tag_d 1
+# 
+#                 2850 : Driver PORTA opcode :  9  dataa :  00000001	tag: 2 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 2850 : Driver PORTB opcode : 10  dataa :   c2607f9a	tag: 3 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 2850 : Driver PORTC opcode :  6  dataa :  e42debe4	tag: 0 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                 2850 : Driver PORTD opcode :  2  dataa :  43e4ae4a	tag: 3 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+# 
+#                 2950 : ------------Sending data-1 on all port of dut----------
+# 
+#                 2950: 1 trans.my_cmda 9
+#                 2950: A trans.my_dataa 00000001
+#                 2950: A trans.reqtag_a 2
+#                 2950: A trans.reqa_d1 b
+#                 2950: A trans.reqa_d2 2
+#                 2950: A trans.reqa_r1 d
+#                 2950: 
+#  
+#  2 trans.my_cmdb a
+#                 2950: B trans.my_datab c2607f9a
+#                 2950: B trans.reqtag_b 3
+#                 2950: B trans.reqb_d1 5
+#                 2950: B trans.reqb_d2 b
+#                 2950: B trans.reqb_r1 8
+#                 2950:
+#  
+#  3 trans.my_cmdc 6
+#                 2950: C trans.my_datac e42debe4
+#                 2950: C trans.reqtag_c 0
+#                 2950: C trans.reqc_d1 5
+#                 2950: C trans.reqc_d2 0
+#                 2950: C trans.reqc_r1 9
+#                 2950: 
+#  
+#  4 trans.my_cmdd 2
+#                 2950: D trans.my_datad 43e4ae4a
+#                 2950: D trans.reqtag_d 3
+# 
+#                 2950: D trans.reqd_d1 e
+#                 2950: D trans.reqd_d2 2
+#                 2950: D trans.reqd_r1 8
+# 
+#                 3350   ----------Monitor Recieving data from Port -C out of Dut----------
+#                 3350 : out_respc 0
+#                 3350 : out_datac 00000000
+#                 3350 : out_tag_c 0
+#                 3350 : Scoreboard vals from generator PORTA opcode :  9  dataa :  ffffffff	tag: 3 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 3350 : Scoreboard vals from generator PORTB opcode :  2  dataa :   30e233f4	tag: 1 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 3350 : Scoreboard vals from generator PORTC opcode :  5  dataa :  70ddddc0	tag: 1 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                 3350 : Scoreboard vals from generator PORTD opcode :  9  dataa :  9f758cb7	tag: 0 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+# 
+#                 3350 : Scoreboard vals from DUT PORT-A PORTA response : 0  out-data1 : 00000000 out-tag1 : 0
+#                 3350 : Scoreboard vals from DUT PORT-B PORTB response : 1  out-data2 : 00000000 out-tag2 : 0
+#                 3350 : Scoreboard vals from DUT PORT-C PORTC response : 0  out-data3 : 00000000 out-tag3 : 0
+#                 3350 : Scoreboard vals from DUT PORT-D PORTD response : 1  out-data4 : 00000000 out-tag4 : 1
+# 
+#                 3350comp_reg: 4294967295
+#                 3350comp_reg: 2675281079
+#                 3350 : ERROR! : PORT-A overflow/underflow or invalid command 0
+# 
+#                 3350 : ERROR! Tag doesnot match: PORT-B expected tag : 1 output_tag: 0
+# 
+#                 3350 : ERROR! : PORT-C overflow/underflow or invalid command 0
+# 
+#                 3350 : ERROR! Tag doesnot match: PORT-D expected tag : 3 output_tag: 1
+# 
+#                 3450 : monitor PORTB response : 1  out-data2 : 00000000 out-tag2 : 0
+#                 3450 : monitor PORTC response : 0  out-data3 : 00000000 out-tag3 : 0
+#                 3450 : monitor PORTD response : 1  out-data4 : 00000000 out-tag4 : 1
+# 
+# 
+#                 3650   ----------Monitor Recieving data from Port -B out of Dut----------
+#                 3650 : out_respb 1
+#                 3650 : out_datab 00000000
+#                 3650 : out_tag_b 3
+# 
+#                 3750   ----------Monitor Recieving data from Port -C out of Dut----------
+#                 3750 : out_respc 1
+#                 3750 : out_datac 00000000
+#                 3750 : out_tag_c 0
+# 
+#                 3850   ----------Monitor Recieving data from Port -A out of Dut----------
+#                 3850 : out_respa 1
+#                 3850 : out_dataa 00000000
+#                 3850 : out_tag_a 2
+#                 3950 : Driver PORTA opcode :  9  dataa :  ffffffff	tag: 3 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 3950 : Driver PORTB opcode :  2  dataa :   30e233f4	tag: 1 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 3950 : Driver PORTC opcode :  5  dataa :  70ddddc0	tag: 1 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                 3950 : Driver PORTD opcode :  9  dataa :  9f758cb7	tag: 0 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+# 
+#                 4050 : ------------Sending data-1 on all port of dut----------
+# 
+#                 4050: 1 trans.my_cmda 9
+#                 4050: A trans.my_dataa ffffffff
+#                 4050: A trans.reqtag_a 3
+#                 4050: A trans.reqa_d1 c
+#                 4050: A trans.reqa_d2 9
+#                 4050: A trans.reqa_r1 4
+#                 4050: 
+#  
+#  2 trans.my_cmdb 2
+#                 4050: B trans.my_datab 30e233f4
+#                 4050: B trans.reqtag_b 1
+#                 4050: B trans.reqb_d1 e
+#                 4050: B trans.reqb_d2 f
+#                 4050: B trans.reqb_r1 9
+#                 4050:
+#  
+#  3 trans.my_cmdc 5
+#                 4050: C trans.my_datac 70ddddc0
+#                 4050: C trans.reqtag_c 1
+#                 4050: C trans.reqc_d1 1
+#                 4050: C trans.reqc_d2 f
+#                 4050: C trans.reqc_r1 d
+#                 4050: 
+#  
+#  4 trans.my_cmdd 9
+#                 4050: D trans.my_datad 9f758cb7
+#                 4050: D trans.reqtag_d 0
+# 
+#                 4050: D trans.reqd_d1 c
+#                 4050: D trans.reqd_d2 9
+#                 4050: D trans.reqd_r1 e
+# 
+#                 4450   ----------Monitor Recieving data from Port -D out of Dut----------
+#                 4450 : out_respd 0
+#                 4450 : out_datad 00000000
+#                 4450 : out_tag_d 0
+# 
+#                 4450 : Scoreboard vals from generator PORTA opcode :  9  dataa :  00000001	tag: 3 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 4450 : Scoreboard vals from generator PORTB opcode :  5  dataa :   c2132256	tag: 1 ALU_count_b:           0 Shift_count_b:           0 nop_count_b:           0
+#                 4450 : Scoreboard vals from generator PORTC opcode :  6  dataa :  833a9df9	tag: 0 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                 4450 : Scoreboard vals from generator PORTD opcode :  6  dataa :  5be3ff3c	tag: 2 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+# 
+#                 4450 : Scoreboard vals from DUT PORT-A PORTA response : 1  out-data1 : 00000000 out-tag1 : 2
+#                 4450 : Scoreboard vals from DUT PORT-B PORTB response : 1  out-data2 : 00000000 out-tag2 : 3
+#                 4450 : Scoreboard vals from DUT PORT-C PORTC response : 1  out-data3 : 00000000 out-tag3 : 0
+#                 4450 : Scoreboard vals from DUT PORT-D PORTD response : 0  out-data4 : 00000000 out-tag4 : 0
+# 
+#                 4450comp_reg:          1
+#                 4450 : ERROR! Tag doesnot match: PORT-A expected tag : 0 output_tag: 2
+# 
+#                 4450 : Match : PORT-B Response match 1
+# 
+#                 4450 : Match : PORT-C Response match 1
+# 
+#                 4450 : ERROR! : PORT-D overflow/underflow or invalid command 0
+# 
+#                 4550 : monitor PORTB response : 1  out-data2 : 00000000 out-tag2 : 3
+#                 4550 : monitor PORTC response : 1  out-data3 : 00000000 out-tag3 : 0
+#                 4550 : monitor PORTD response : 0  out-data4 : 00000000 out-tag4 : 0
+# 
+# 
+#                 5050   ----------Monitor Recieving data from Port -A out of Dut----------
+#                 5050 : out_respa 1
+#                 5050 : out_dataa 00000000
+#                 5050 : out_tag_a 3
+#                 5050 : Driver PORTA opcode :  9  dataa :  00000001	tag: 3 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 5050 : Driver PORTB opcode :  5  dataa :   c2132256	tag: 1 ALU_count_b:           0 Shift_count_b:           0 nop_count_b:           0
+#                 5050 : Driver PORTC opcode :  6  dataa :  833a9df9	tag: 0 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                 5050 : Driver PORTD opcode :  6  dataa :  5be3ff3c	tag: 2 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+# 
+#                 5150 : ------------Sending data-1 on all port of dut----------
+# 
+#                 5150: 1 trans.my_cmda 9
+#                 5150: A trans.my_dataa 00000001
+#                 5150: A trans.reqtag_a 3
+#                 5150: A trans.reqa_d1 9
+#                 5150: A trans.reqa_d2 7
+#                 5150: A trans.reqa_r1 e
+#                 5150: 
+#  
+#  2 trans.my_cmdb 5
+#                 5150: B trans.my_datab c2132256
+#                 5150: B trans.reqtag_b 1
+#                 5150: B trans.reqb_d1 9
+#                 5150: B trans.reqb_d2 6
+#                 5150: B trans.reqb_r1 8
+#                 5150:
+#  
+#  3 trans.my_cmdc 6
+#                 5150: C trans.my_datac 833a9df9
+#                 5150: C trans.reqtag_c 0
+#                 5150: C trans.reqc_d1 7
+#                 5150: C trans.reqc_d2 6
+#                 5150: C trans.reqc_r1 b
+#                 5150: 
+#  
+#  4 trans.my_cmdd 6
+#                 5150: D trans.my_datad 5be3ff3c
+#                 5150: D trans.reqtag_d 2
+# 
+#                 5150: D trans.reqd_d1 3
+#                 5150: D trans.reqd_d2 e
+#                 5150: D trans.reqd_r1 3
+# 
+#                 5150   ----------Monitor Recieving data from Port -C out of Dut----------
+#                 5150 : out_respc 1
+#                 5150 : out_datac 00000000
+#                 5150 : out_tag_c 1
+# 
+#                 5250   ----------Monitor Recieving data from Port -D out of Dut----------
+#                 5250 : out_respd 1
+#                 5250 : out_datad 00000000
+#                 5250 : out_tag_d 0
+# 
+# 
+#                 5550   ----------Monitor Recieving data from Port -B out of Dut----------
+#                 5550 : out_respb 0
+#                 5550 : out_datab 00000000
+#                 5550 : out_tag_b 0
+#                 5550 : Scoreboard vals from generator PORTA opcode :  9  dataa :  00000001	tag: 1 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 5550 : Scoreboard vals from generator PORTB opcode :  1  dataa :   28ae6b4b	tag: 2 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 5550 : Scoreboard vals from generator PORTC opcode : 10  dataa :  79784b35	tag: 3 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                 5550 : Scoreboard vals from generator PORTD opcode :  5  dataa :  d6286fa1	tag: 3 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+# 
+#                 5550 : Scoreboard vals from DUT PORT-A PORTA response : 1  out-data1 : 00000000 out-tag1 : 3
+#                 5550 : Scoreboard vals from DUT PORT-B PORTB response : 0  out-data2 : 00000000 out-tag2 : 0
+#                 5550 : Scoreboard vals from DUT PORT-C PORTC response : 1  out-data3 : 00000000 out-tag3 : 1
+#                 5550 : Scoreboard vals from DUT PORT-D PORTD response : 1  out-data4 : 00000000 out-tag4 : 0
+# 
+#                 5550comp_reg:          1
+#                 5550 : ERROR! Tag doesnot match: PORT-A expected tag : 0 output_tag: 3
+# 
+#                 5550 : ERROR! : PORT-B overflow/underflow or invalid command 0
+# 
+#                 5550 : Match : PORT-C Response match 1
+# 
+#                 5550 : Match : PORT-D Response match 1
+# 
+#                 5650 : monitor PORTB response : 0  out-data2 : 00000000 out-tag2 : 0
+#                 5650 : monitor PORTC response : 1  out-data3 : 00000000 out-tag3 : 1
+#                 5650 : monitor PORTD response : 1  out-data4 : 00000000 out-tag4 : 0
+# 
+# 
+#                 6050   ----------Monitor Recieving data from Port -B out of Dut----------
+#                 6050 : out_respb 1
+#                 6050 : out_datab 00000000
+#                 6050 : out_tag_b 1
+# 
+#                 6050   ----------Monitor Recieving data from Port -A out of Dut----------
+#                 6050 : out_respa 0
+#                 6050 : out_dataa 00000000
+#                 6050 : out_tag_a 0
+# 
+#                 6150   ----------Monitor Recieving data from Port -C out of Dut----------
+#                 6150 : out_respc 1
+#                 6150 : out_datac 00000000
+#                 6150 : out_tag_c 0
+#                 6150 : Driver PORTA opcode :  9  dataa :  00000001	tag: 1 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 6150 : Driver PORTB opcode :  1  dataa :   28ae6b4b	tag: 2 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 6150 : Driver PORTC opcode : 10  dataa :  79784b35	tag: 3 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                 6150 : Driver PORTD opcode :  5  dataa :  d6286fa1	tag: 3 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+# 
+#                 6250 : ------------Sending data-1 on all port of dut----------
+# 
+#                 6250: 1 trans.my_cmda 9
+#                 6250: A trans.my_dataa 00000001
+#                 6250: A trans.reqtag_a 1
+#                 6250: A trans.reqa_d1 a
+#                 6250: A trans.reqa_d2 3
+#                 6250: A trans.reqa_r1 c
+#                 6250: 
+#  
+#  2 trans.my_cmdb 1
+#                 6250: B trans.my_datab 28ae6b4b
+#                 6250: B trans.reqtag_b 2
+#                 6250: B trans.reqb_d1 0
+#                 6250: B trans.reqb_d2 d
+#                 6250: B trans.reqb_r1 6
+#                 6250:
+#  
+#  3 trans.my_cmdc a
+#                 6250: C trans.my_datac 79784b35
+#                 6250: C trans.reqtag_c 3
+#                 6250: C trans.reqc_d1 b
+#                 6250: C trans.reqc_d2 9
+#                 6250: C trans.reqc_r1 d
+#                 6250: 
+#  
+#  4 trans.my_cmdd 5
+#                 6250: D trans.my_datad d6286fa1
+#                 6250: D trans.reqtag_d 3
+# 
+#                 6250: D trans.reqd_d1 1
+#                 6250: D trans.reqd_d2 2
+#                 6250: D trans.reqd_r1 5
+# 
+#                 6550   ----------Monitor Recieving data from Port -D out of Dut----------
+#                 6550 : out_respd 1
+#                 6550 : out_datad 00000000
+#                 6550 : out_tag_d 2
+# 
+#                 6550 : Scoreboard vals from generator PORTA opcode :  9  dataa :  00000001	tag: 2 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 6550 : Scoreboard vals from generator PORTB opcode : 10  dataa :   e77a9183	tag: 3 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 6550 : Scoreboard vals from generator PORTC opcode : 10  dataa :  86aa1825	tag: 1 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                 6550 : Scoreboard vals from generator PORTD opcode :  6  dataa :  49fb3f9c	tag: 0 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+# 
+#                 6550 : Scoreboard vals from DUT PORT-A PORTA response : 0  out-data1 : 00000000 out-tag1 : 0
+#                 6550 : Scoreboard vals from DUT PORT-B PORTB response : 1  out-data2 : 00000000 out-tag2 : 1
+#                 6550 : Scoreboard vals from DUT PORT-C PORTC response : 1  out-data3 : 00000000 out-tag3 : 0
+#                 6550 : Scoreboard vals from DUT PORT-D PORTD response : 1  out-data4 : 00000000 out-tag4 : 2
+# 
+#                 6550comp_reg:          1
+#                 6550 : ERROR! : PORT-A overflow/underflow or invalid command 0
+# 
+#                 6550 : Match : PORT-B Response match 1
+# 
+#                 6550 : Match : PORT-C Response match 1
+# 
+#                 6550 : Match : PORT-D Response match 1
+# 
+#                 6650 : monitor PORTB response : 1  out-data2 : 00000000 out-tag2 : 1
+#                 6650 : monitor PORTC response : 1  out-data3 : 00000000 out-tag3 : 0
+#                 6650 : monitor PORTD response : 1  out-data4 : 00000000 out-tag4 : 2
+# 
+# 
+#                 6750   ----------Monitor Recieving data from Port -B out of Dut----------
+#                 6750 : out_respb 1
+#                 6750 : out_datab 00000000
+#                 6750 : out_tag_b 1
+# 
+#                 6750   ----------Monitor Recieving data from Port -A out of Dut----------
+#                 6750 : out_respa 0
+#                 6750 : out_dataa 00000000
+#                 6750 : out_tag_a 0
+# 
+#                 6850   ----------Monitor Recieving data from Port -C out of Dut----------
+#                 6850 : out_respc 1
+#                 6850 : out_datac 00000000
+#                 6850 : out_tag_c 0
+#                 7250 : Driver PORTA opcode :  9  dataa :  00000001	tag: 2 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 7250 : Driver PORTB opcode : 10  dataa :   e77a9183	tag: 3 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 7250 : Driver PORTC opcode : 10  dataa :  86aa1825	tag: 1 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                 7250 : Driver PORTD opcode :  6  dataa :  49fb3f9c	tag: 0 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+# 
+#                 7350 : ------------Sending data-1 on all port of dut----------
+# 
+#                 7350: 1 trans.my_cmda 9
+#                 7350: A trans.my_dataa 00000001
+#                 7350: A trans.reqtag_a 2
+#                 7350: A trans.reqa_d1 7
+#                 7350: A trans.reqa_d2 e
+#                 7350: A trans.reqa_r1 f
+#                 7350: 
+#  
+#  2 trans.my_cmdb a
+#                 7350: B trans.my_datab e77a9183
+#                 7350: B trans.reqtag_b 3
+#                 7350: B trans.reqb_d1 6
+#                 7350: B trans.reqb_d2 b
+#                 7350: B trans.reqb_r1 1
+#                 7350:
+#  
+#  3 trans.my_cmdc a
+#                 7350: C trans.my_datac 86aa1825
+#                 7350: C trans.reqtag_c 1
+#                 7350: C trans.reqc_d1 9
+#                 7350: C trans.reqc_d2 f
+#                 7350: C trans.reqc_r1 6
+#                 7350: 
+#  
+#  4 trans.my_cmdd 6
+#                 7350: D trans.my_datad 49fb3f9c
+#                 7350: D trans.reqtag_d 0
+# 
+#                 7350: D trans.reqd_d1 5
+#                 7350: D trans.reqd_d2 4
+#                 7350: D trans.reqd_r1 b
+#                 8350 : Driver PORTA opcode :  9  dataa :  00000001	tag: 0 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 8350 : Driver PORTB opcode :  1  dataa :   9606892a	tag: 0 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 8350 : Driver PORTC opcode : 10  dataa :  bba31072	tag: 2 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                 8350 : Driver PORTD opcode :  1  dataa :  ec9104dc	tag: 1 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+# 
+#                 8450 : ------------Sending data-1 on all port of dut----------
+# 
+#                 8450: 1 trans.my_cmda 9
+#                 8450: A trans.my_dataa 00000001
+#                 8450: A trans.reqtag_a 0
+#                 8450: A trans.reqa_d1 8
+#                 8450: A trans.reqa_d2 c
+#                 8450: A trans.reqa_r1 f
+#                 8450: 
+#  
+#  2 trans.my_cmdb 1
+#                 8450: B trans.my_datab 9606892a
+#                 8450: B trans.reqtag_b 0
+#                 8450: B trans.reqb_d1 7
+#                 8450: B trans.reqb_d2 9
+#                 8450: B trans.reqb_r1 d
+#                 8450:
+#  
+#  3 trans.my_cmdc a
+#                 8450: C trans.my_datac bba31072
+#                 8450: C trans.reqtag_c 2
+#                 8450: C trans.reqc_d1 9
+#                 8450: C trans.reqc_d2 6
+#                 8450: C trans.reqc_r1 b
+#                 8450: 
+#  
+#  4 trans.my_cmdd 1
+#                 8450: D trans.my_datad ec9104dc
+#                 8450: D trans.reqtag_d 1
+# 
+#                 8450: D trans.reqd_d1 9
+#                 8450: D trans.reqd_d2 d
+#                 8450: D trans.reqd_r1 d
+# 
+#                 8950   ----------Monitor Recieving data from Port -D out of Dut----------
+#                 8950 : out_respd 1
+#                 8950 : out_datad 00000000
+#                 8950 : out_tag_d 1
+# 
+#                 8950 : Scoreboard vals from generator PORTA opcode :  9  dataa :  00000001	tag: 0 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 8950 : Scoreboard vals from generator PORTB opcode :  1  dataa :   9606892a	tag: 0 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 8950 : Scoreboard vals from generator PORTC opcode : 10  dataa :  bba31072	tag: 2 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                 8950 : Scoreboard vals from generator PORTD opcode :  1  dataa :  ec9104dc	tag: 1 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+# 
+#                 8950 : Scoreboard vals from DUT PORT-A PORTA response : 0  out-data1 : 00000000 out-tag1 : 0
+#                 8950 : Scoreboard vals from DUT PORT-B PORTB response : 1  out-data2 : 00000000 out-tag2 : 1
+#                 8950 : Scoreboard vals from DUT PORT-C PORTC response : 1  out-data3 : 00000000 out-tag3 : 0
+#                 8950 : Scoreboard vals from DUT PORT-D PORTD response : 1  out-data4 : 00000000 out-tag4 : 1
+# 
+#                 8950comp_reg:          1
+#                 8950 : ERROR! : PORT-A overflow/underflow or invalid command 0
+# 
+#                 8950 : Match : PORT-B Response match 1
+# 
+#                 8950 : Match : PORT-C Response match 1
+# 
+#                 8950 : Match : PORT-D Response match 1
+# 
+#                 9050 : monitor PORTB response : 1  out-data2 : 00000000 out-tag2 : 1
+#                 9050 : monitor PORTC response : 1  out-data3 : 00000000 out-tag3 : 0
+#                 9050 : monitor PORTD response : 1  out-data4 : 00000000 out-tag4 : 1
+# 
+# 
+#                 9150   ----------Monitor Recieving data from Port -D out of Dut----------
+#                 9150 : out_respd 2
+#                 9150 : out_datad 00000000
+#                 9150 : out_tag_d 1
+# 
+# 
+#                 9150   ----------Monitor Recieving data from Port -C out of Dut----------
+#                 9150 : out_respc 0
+#                 9150 : out_datac 00000000
+#                 9150 : out_tag_c 0
+# 
+#                 9150   ----------Monitor Recieving data from Port -B out of Dut----------
+#                 9150 : out_respb 0
+#                 9150 : out_datab 00000000
+#                 9150 : out_tag_b 0
+# 
+#                 9150   ----------Monitor Recieving data from Port -A out of Dut----------
+#                 9150 : out_respa 1
+#                 9150 : out_dataa 00000000
+#                 9150 : out_tag_a 0
+#                 9150 : Scoreboard vals from generator PORTA opcode :  9  dataa :  00000001	tag: 1 ALU_count_a:           1 Shift_count_a:           0 nop_count_a:           0
+#                 9150 : Scoreboard vals from generator PORTB opcode : 10  dataa :   71e85350	tag: 0 ALU_count_b:           1 Shift_count_b:           0 nop_count_b:           0
+#                 9150 : Scoreboard vals from generator PORTC opcode : 10  dataa :  08319205	tag: 0 ALU_count_c:           1 Shift_count_c:           0 nop_count_c:           0
+#                 9150 : Scoreboard vals from generator PORTD opcode :  2  dataa :  bf74d3c7	tag: 0 ALU_count_d:           1 Shift_count_d:           0 nop_count_d:           0
+# 
+#                 9150 : Scoreboard vals from DUT PORT-A PORTA response : 1  out-data1 : 00000000 out-tag1 : 0
+#                 9150 : Scoreboard vals from DUT PORT-B PORTB response : 0  out-data2 : 00000000 out-tag2 : 0
+#                 9150 : Scoreboard vals from DUT PORT-C PORTC response : 0  out-data3 : 00000000 out-tag3 : 0
+#                 9150 : Scoreboard vals from DUT PORT-D PORTD response : 2  out-data4 : 00000000 out-tag4 : 1
+# 
+#                 9150comp_reg:          1
+#                 9150 :  Tag match: PORT-A expected tag : 0 output_tag: 0
+# 
+#                 9150 : ERROR! : PORT-B : expected dataa : ffffffff  output_datab : 00000000
+#                 9150 : ERROR! : PORT-B overflow/underflow or invalid command 0
+# 
+#                 9150 : ERROR! : PORT-C : expected datac : 6d0772d4  output_datac : 00000000
+#                 9150 : ERROR! : PORT-C overflow/underflow or invalid command 0
+# 
+#                 9150 : ERROR! Tag doesnot match: PORT-D expected tag : 0 output_tag: 1
+# 
+# ** Note: $finish    : test/test.sv(24)
+#    Time: 9150 ns  Iteration: 2  Instance: /top/t1

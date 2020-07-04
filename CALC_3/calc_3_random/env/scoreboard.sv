@@ -1,0 +1,502 @@
+// Project		: COEN 6541 - CALC 2
+// File Name	: scoreboard.sv
+// Description	: The scoreboard is a part of the environment. This predicts the 
+// results of the commands sent to the DUT and also check whether the expected value 
+// is same as the actual result value obtained from the DUT. 
+//
+// --------------------------------------------------------------------------
+
+// Include the transaction and dut_out file: 
+`include "env/Transaction.sv"
+`include "env/dut_out_a.sv"
+`include "env/dut_out_b.sv"
+`include "env/dut_out_c.sv"
+`include "env/dut_out_d.sv"
+
+
+// Class scoreboard:
+class scoreboard;
+
+	int max_trans_cnt;
+	bit verbose;
+	event ended;
+	
+	// Variable to note the correct results: 
+	int correct1, correct2, correct3, correct4;
+	bit [0:31] overflow_limit = 32'h FFFFFFFF;
+	
+	Transaction to_dut;		// Handle for the class transaction 
+	dut_out_A from_dut_A;
+	dut_out_B from_dut_B;
+	dut_out_C from_dut_C;
+	dut_out_D from_dut_D;	// Handle for the class dut_out 
+	mailbox #(Transaction) gen2scb;	// mailbox to send data from driver to scoreboard
+	mailbox #(dut_out_A)mon2scb_A;  // mailbox to send data from monitor to scoreboard
+    mailbox #(dut_out_B)mon2scb_B;
+	mailbox #(dut_out_C)mon2scb_C;
+	mailbox #(dut_out_D)mon2scb_D;
+	
+	
+	// variables for calculating the expected result:
+	bit [0:1] expected_respa, expected_respb, expected_respc, expected_respd;
+	bit [0:1] expected_taga, expected_tagb, expected_tagc, expected_tagd;
+	bit [0:31] expected_dataa, expected_datab, expected_datac, expected_datad;
+	bit [0:35] overflow_output_a;
+	bit [0:35] overflow_output_b;
+	bit [0:35] overflow_output_c;
+	bit [0:35] overflow_output_d;
+	
+	bit [0:31] comp_reg[16] = '{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};   // For internal registers with default initial values
+
+	// Constructor function 
+	function new (int max_trans_cnt, mailbox #(Transaction) gen2scb, mailbox #(dut_out_A) mon2scb_A, mailbox #(dut_out_B) mon2scb_B, mailbox #(dut_out_C) mon2scb_C, mailbox #(dut_out_D) mon2scb_D, bit verbose = 0);
+	
+		this.max_trans_cnt = max_trans_cnt;
+		this.gen2scb = gen2scb;
+		this.mon2scb_A = mon2scb_A;
+		this.mon2scb_B = mon2scb_B;
+		this.mon2scb_C = mon2scb_C;
+		this.mon2scb_D = mon2scb_D;
+		this.verbose = verbose;
+	endfunction
+
+	// Task to calculate the expected data and response: 
+	task expected_output();
+
+// CMD = 1001 - STORE--------------------------------------------------/
+		if( to_dut.reqcmd_a == 4'b1001)
+		begin
+		      
+		      int j = to_dut.data1;
+		      comp_reg[to_dut.reqa_r1] = j;
+		      $display($time, "comp_reg: ", comp_reg[to_dut.reqa_r1]);
+	  end
+	  
+	  if( to_dut.reqcmd_b == 4'b1001)
+		begin
+		      
+		      int j = to_dut.data3;
+		      comp_reg[to_dut.reqb_r1] = j;
+		      $display($time, "comp_reg: ", comp_reg[to_dut.reqb_r1]);
+	  end
+		
+		if( to_dut.reqcmd_c == 4'b1001)
+		begin
+		      
+		      int j = to_dut.data5;
+		      comp_reg[to_dut.reqc_r1] = j;
+		      $display($time, "comp_reg: ", comp_reg[to_dut.reqc_r1]);
+	  end
+	  
+	  if( to_dut.reqcmd_d == 4'b1001)
+		begin
+		      
+		      int j = to_dut.data7;
+		      comp_reg[to_dut.reqd_r1] = j;
+		      $display($time, "comp_reg: ", comp_reg[to_dut.reqd_r1]);
+	  end
+	  
+	  // CMD = 1010 - FETCH-----------------------------------------------/
+    if( to_dut.reqcmd_a == 4'b1010)
+    begin
+         		expected_dataa = comp_reg[to_dut.reqa_d1]  ;
+         		if (expected_dataa == from_dut_A.out_dataa)
+         		  expected_respa = 2'b01;
+		end
+		if( to_dut.reqcmd_b == 4'b1010)
+    begin
+         		expected_datab = comp_reg[to_dut.reqb_d1]  ;
+         		if (expected_datab == from_dut_B.out_datab)
+         		  expected_respb = 2'b01;
+		end
+		if( to_dut.reqcmd_c == 4'b1010)
+    begin
+         		expected_datac = comp_reg[to_dut.reqc_d1]  ;
+         		if (expected_datac == from_dut_C.out_datac)
+         		  expected_respc = 2'b01;
+		end
+		if( to_dut.reqcmd_d == 4'b1010)
+    begin
+         		expected_datad = comp_reg[to_dut.reqd_d1]  ;
+         		if (expected_datad == from_dut_D.out_datad)
+         		  expected_respd = 2'b01;
+		end
+		
+		//------------------------------------ADDITION cmd=0001------------------------// 
+		// PORT-A:
+		if (to_dut.reqcmd_a== 4'b0001) 
+		begin
+			expected_dataa = ( comp_reg[to_dut.reqa_d1] + comp_reg[to_dut.reqa_d2]);
+			overflow_output_a = ( comp_reg[to_dut.reqa_d1] + comp_reg[to_dut.reqa_d2]);
+			if((expected_dataa< comp_reg[to_dut.reqa_d1]) && (expected_dataa< comp_reg[to_dut.reqa_d2]) || overflow_limit < overflow_output_a)
+				expected_respa = 2'b10;	
+				expected_taga = to_dut.reqtag_a; 
+		end
+		
+		//------------------------------------ADDITION cmd=0001------------------------// 
+		// PORT-B:
+	if (to_dut.reqcmd_b== 4'b0001) 
+		begin
+			expected_datab = ( comp_reg[to_dut.reqb_d1] + comp_reg[to_dut.reqb_d2]);
+			overflow_output_b = ( comp_reg[to_dut.reqb_d1] + comp_reg[to_dut.reqb_d2]);
+			if((expected_datab< comp_reg[to_dut.reqb_d1]) && (expected_dataa< comp_reg[to_dut.reqb_d2]) || overflow_limit < overflow_output_a)
+				expected_respb = 2'b10;	
+				expected_tagb = to_dut.reqtag_b; 
+		end
+		
+		//------------------------------------ADDITION cmd=0001------------------------// 
+		// PORT-C:
+		if (to_dut.reqcmd_c== 4'b0001) 
+		begin
+			expected_datac = ( comp_reg[to_dut.reqc_d1] + comp_reg[to_dut.reqc_d2]);
+			overflow_output_c = ( comp_reg[to_dut.reqc_d1] + comp_reg[to_dut.reqc_d2]);
+			if((expected_datac< comp_reg[to_dut.reqc_d1]) && (expected_datac< comp_reg[to_dut.reqc_d2]) || overflow_limit < overflow_output_a)
+				expected_respc = 2'b10;	
+				expected_tagc = to_dut.reqtag_c; 
+		end
+		
+		//------------------------------------ADDITION cmd=0001------------------------// 
+		// PORT-D:
+		if (to_dut.reqcmd_d== 4'b0001) 
+		begin
+			expected_datad = ( comp_reg[to_dut.reqd_d1] + comp_reg[to_dut.reqd_d2]);
+			overflow_output_d = ( comp_reg[to_dut.reqd_d1] + comp_reg[to_dut.reqd_d2]);
+			if((expected_datad< comp_reg[to_dut.reqd_d1]) && (expected_datad< comp_reg[to_dut.reqd_d2]) || overflow_limit < overflow_output_a)
+				expected_respd = 2'b10;	
+				expected_tagd = to_dut.reqtag_d; 
+		end  
+		
+		//------------------------------------SUBTRACTION cmd=0010------------------------//
+		// PORT-A:
+		if (to_dut.reqcmd_a== 4'b0010) 
+		begin
+			expected_dataa = ( comp_reg[to_dut.reqa_d1] - comp_reg[to_dut.reqa_d2]);
+			expected_taga = to_dut.reqtag_a; 
+			if(comp_reg[to_dut.reqa_d1] < expected_dataa < comp_reg[to_dut.reqa_d2])
+				expected_respa = 2'b10;
+		end		
+		
+		//------------------------------------SUBTRACTION cmd=0010------------------------//
+		// PORT-B:
+		if (to_dut.reqcmd_b== 4'b0010) 
+		begin
+			expected_datab = ( comp_reg[to_dut.reqb_d1] - comp_reg[to_dut.reqb_d2]);
+			expected_tagb = to_dut.reqtag_b; 
+			if(comp_reg[to_dut.reqb_d1] < expected_datab < comp_reg[to_dut.reqb_d2])
+				expected_respb = 2'b10;
+		end
+		
+		//------------------------------------SUBTRACTION cmd=0010------------------------//
+		// PORT-C:
+		if (to_dut.reqcmd_c== 4'b0010) 
+		begin
+			expected_datac = ( comp_reg[to_dut.reqc_d1] - comp_reg[to_dut.reqc_d2]);
+			expected_tagc = to_dut.reqtag_c; 
+			if(comp_reg[to_dut.reqc_d1] < expected_datac < comp_reg[to_dut.reqc_d2])
+				expected_respc = 2'b10;
+		end
+		
+		//------------------------------------SUBTRACTION cmd=0010------------------------//
+		// PORT-D:
+		if (to_dut.reqcmd_d== 4'b0010) 
+		begin
+			expected_datad = ( comp_reg[to_dut.reqd_d1] - comp_reg[to_dut.reqd_d2]);
+			expected_tagd = to_dut.reqtag_d; 
+			if(comp_reg[to_dut.reqd_d1] < expected_datad < comp_reg[to_dut.reqd_d2])
+				expected_respd = 2'b10;
+		end
+
+		//------------------------------------LEFT SHIFT cmd=0101------------------------//
+		// PORT-A:
+		if (to_dut.reqcmd_a== 4'b0101) 
+		begin
+			expected_dataa = (comp_reg[to_dut.reqa_d1] << (comp_reg[to_dut.reqa_d2] & 31));
+			expected_taga = to_dut.reqtag_a; 
+			expected_respa =2'b01;
+		end		
+		
+		//------------------------------------LEFT SHIFT cmd=0101------------------------//
+		// PORT-B:
+		if (to_dut.reqcmd_b== 4'b0101) 
+		begin
+			expected_datab = (comp_reg[to_dut.reqb_d1] << (comp_reg[to_dut.reqb_d2] & 31));
+			expected_tagb = to_dut.reqtag_b; 
+			expected_respb =2'b01;
+		end  	
+		
+		//------------------------------------LEFT SHIFT cmd=0101------------------------//
+		// PORT-C:
+		if (to_dut.reqcmd_c== 4'b0101) 
+		begin
+			expected_datac = (comp_reg[to_dut.reqc_d1] << (comp_reg[to_dut.reqc_d2] & 31));
+			expected_tagc = to_dut.reqtag_c; 
+			expected_respc =2'b01;
+		end 
+		
+		//------------------------------------LEFT SHIFT cmd=0101------------------------//
+		// PORT-D:
+		if (to_dut.reqcmd_d== 4'b0101) 
+		begin
+			expected_datad = (comp_reg[to_dut.reqd_d1] << (comp_reg[to_dut.reqd_d2] & 31));
+			expected_tagd = to_dut.reqtag_d; 
+			expected_respd =2'b01;
+		end
+		
+		//------------------------------------RIGHT SHIFT cmd=0110------------------------//
+		// PORT-A:
+		if (to_dut.reqcmd_a== 4'b0110) 
+		begin 
+			expected_dataa = (comp_reg[to_dut.reqa_d1] >> (comp_reg[to_dut.reqa_d2] & 31));
+			expected_taga = to_dut.reqtag_a; 
+			expected_respa =2'b01;
+		end
+		
+		//------------------------------------RIGHT SHIFT cmd=0110------------------------//
+		// PORT-B:
+		if (to_dut.reqcmd_b== 4'b0110) 
+		begin
+			expected_datab = (comp_reg[to_dut.reqb_d1] >> (comp_reg[to_dut.reqb_d2] & 31));
+			expected_tagb = to_dut.reqtag_b; 
+			expected_respb =2'b01;
+		end
+				
+		//------------------------------------RIGHT SHIFT cmd=0110------------------------//
+		// PORT-C:
+		if (to_dut.reqcmd_c== 4'b0110) 
+		begin
+			expected_datac = (comp_reg[to_dut.reqc_d1] >> (comp_reg[to_dut.reqc_d2] & 31));
+			expected_tagc = to_dut.reqtag_c; 
+			expected_respc =2'b01;
+		end
+		
+		//------------------------------------RIGHT SHIFT cmd=0110------------------------//
+		// PORT-D:
+		if (to_dut.reqcmd_d== 4'b0110) 
+		begin
+			expected_datad = (comp_reg[to_dut.reqd_d1] >> (comp_reg[to_dut.reqd_d2] & 31));
+			expected_tagd = to_dut.reqtag_d; 
+			expected_respd =2'b01;
+		end
+	
+		//--------------------------------cmd=invalid---------------------------//
+		// PORT-A:
+		if ((to_dut.reqcmd_a==3)||(to_dut.reqcmd_a==4)||(to_dut.reqcmd_a==7)||(to_dut.reqcmd_a==8)||(to_dut.reqcmd_a>12))
+		begin 
+			expected_respa = 2'b10;
+			expected_taga = to_dut.reqtag_a;		
+		end 
+		
+		//--------------------------------cmd=invalid---------------------------//
+		// PORT-B:
+		if ((to_dut.reqcmd_b==3)||(to_dut.reqcmd_b==4)||(to_dut.reqcmd_b==7)||(to_dut.reqcmd_b==8)||(to_dut.reqcmd_b>12))
+		begin 
+			expected_respb = 2'b10;
+			expected_tagb = to_dut.reqtag_b; 
+		end 
+		
+		//--------------------------------cmd=invalid---------------------------//
+		// PORT-C:
+		if ((to_dut.reqcmd_c==3)||(to_dut.reqcmd_c==4)||(to_dut.reqcmd_c==7)||(to_dut.reqcmd_c==8)||(to_dut.reqcmd_c>12))
+		begin 
+			expected_respc = 2'b10; 
+			expected_tagc = to_dut.reqtag_c; 
+		end 
+		//--------------------------------cmd=invalid---------------------------//
+		// PORT-D:
+		if ((to_dut.reqcmd_d==3)||(to_dut.reqcmd_d==4)||(to_dut.reqcmd_d==7)||(to_dut.reqcmd_d==8)||(to_dut.reqcmd_d>12))
+		begin 	
+			expected_respd = 2'b10;
+			expected_tagd = to_dut.reqtag_d; 				
+		end 
+		
+		// Check whether the actual and expected values are the same on ports of the DUT:
+		// PORT-A:
+		if(from_dut_A.out_respa==2'b00)
+		begin
+		  if(to_dut.reqcmd_a == 10) begin
+			$display ($time, " : ERROR! : PORT-A : expected dataa : %h  output_dataa : %h",expected_dataa,from_dut_A.out_dataa); end
+			$display ($time, " : ERROR! : PORT-A overflow/underflow or invalid command %h\n",from_dut_A.out_respa);
+		end
+		else if (from_dut_A.out_respa==2'b11)
+			$display ($time, " : ERROR! : PORT-A unsued response %h\n",from_dut_A.out_respa);
+		else if (from_dut_A.out_respa==2'b10 && expected_respa==2'b10)
+			$display ($time, " : ERROR! : PORT-A overflow/underflow or invalid command %h\n",from_dut_A.out_respa);
+		else if (from_dut_A.out_respa==2'b01 && expected_respa==2'b01)
+		  $display ($time, " : Match : PORT-A Response match %h\n",from_dut_A.out_respa);
+		else 
+		begin
+		 if (to_dut.reqcmd_a ==10) begin
+		   if ((expected_dataa != from_dut_A.out_dataa ) && (expected_taga != from_dut_A.out_tag_a)) 
+		  $display ($time, " : ERROR! Both Data and Tag doesnot match: PORT-A expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_dataa,from_dut_A.out_dataa,expected_taga,from_dut_A.out_tag_a);
+      else	if ((expected_dataa != from_dut_A.out_dataa ) && (expected_taga == from_dut_A.out_tag_a)) 
+			$display ($time, " : ERROR! Data doesnot match but Tag match: PORT-A expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_dataa,from_dut_A.out_dataa,expected_taga,from_dut_A.out_tag_a);
+			else if ((expected_dataa == from_dut_A.out_dataa ) && (expected_taga != from_dut_A.out_tag_a)) 
+			  $display ($time, " : ERROR! Data match but Tag doesnot match: PORT-A expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_dataa,from_dut_A.out_dataa,expected_taga,from_dut_A.out_tag_a);
+	    else 
+			begin
+				$display($time, " : Both Data and Tag match at PORT-A");
+				$display ($time, " : Congrats on data and tag Match!! : PORT-A expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_dataa,from_dut_A.out_dataa,expected_taga,from_dut_A.out_tag_a); 
+				correct1++;
+			end
+			end
+		 else
+		   if (expected_taga != from_dut_A.out_tag_a) 
+		 $display ($time, " : ERROR! Tag doesnot match: PORT-A expected tag : %h output_tag: %h\n",expected_taga,from_dut_A.out_tag_a);
+      else	if (expected_taga == from_dut_A.out_tag_a)
+			$display ($time, " :  Tag match: PORT-A expected tag : %h output_tag: %h\n",expected_taga,from_dut_A.out_tag_a);
+		
+	 	end		
+		
+				// Check whether the actual and expected values are the same on ports of the DUT:
+		// PORT-B:
+		if(from_dut_B.out_respb==2'b00)
+		begin
+		  if(to_dut.reqcmd_b == 10) begin
+			$display ($time, " : ERROR! : PORT-B : expected dataa : %h  output_datab : %h",expected_datab,from_dut_B.out_datab); end
+			$display ($time, " : ERROR! : PORT-B overflow/underflow or invalid command %h\n",from_dut_B.out_respb);
+		end
+		else if (from_dut_B.out_respb==2'b11)
+			$display ($time, " : ERROR! : PORT-B unsued response %h\n",from_dut_B.out_respb);
+		else if (from_dut_B.out_respb==2'b10 && expected_respb==2'b10)
+			$display ($time, " : ERROR! : PORT-B overflow/underflow or invalid command %h\n",from_dut_B.out_respb);
+		else if (from_dut_B.out_respb==2'b01 && expected_respb==2'b01)
+		  $display ($time, " : Match : PORT-B Response match %h\n",from_dut_B.out_respb);
+		else 
+		begin
+		 if (to_dut.reqcmd_b ==10) begin
+		   if ((expected_datab != from_dut_B.out_datab ) && (expected_tagb != from_dut_B.out_tag_b)) 
+		  $display ($time, " : ERROR! Both Data and Tag doesnot match: PORT-A expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_datab,from_dut_B.out_datab,expected_tagb,from_dut_B.out_tag_b);
+      else	if ((expected_datab != from_dut_B.out_datab ) && (expected_tagb == from_dut_B.out_tag_b)) 
+			$display ($time, " : ERROR! Data doesnot match but Tag match: PORT-B expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_datab,from_dut_B.out_datab,expected_tagb,from_dut_B.out_tag_b);
+			else if ((expected_datab == from_dut_B.out_datab ) && (expected_tagb != from_dut_B.out_tag_b)) 
+			  $display ($time, " : ERROR! Data match but Tag doesnot match: PORT-B expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_datab,from_dut_B.out_datab,expected_tagb,from_dut_B.out_tag_b);
+	    else 
+			begin
+				$display($time, " : Both Data and Tag match at PORT-B");
+				$display ($time, " : Congrats on data and tag Match!! : PORT-B expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_datab,from_dut_B.out_datab,expected_tagb,from_dut_B.out_tag_b); 
+				correct2++;
+			end
+			end
+		 else
+		   if (expected_tagb != from_dut_B.out_tag_b) 
+		 $display ($time, " : ERROR! Tag doesnot match: PORT-B expected tag : %h output_tag: %h\n",expected_tagb,from_dut_B.out_tag_b);
+      else	if (expected_tagb == from_dut_B.out_tag_b)
+			$display ($time, " :  Tag match: PORT-B expected tag : %h output_tag: %h\n",expected_tagb,from_dut_B.out_tag_b);
+		
+	 	end		
+		
+				// Check whether the actual and expected values are the same on ports of the DUT:
+		// PORT-C:
+		if(from_dut_C.out_respc==2'b00)
+		begin
+		  if(to_dut.reqcmd_c == 10) begin
+			$display ($time, " : ERROR! : PORT-C : expected datac : %h  output_datac : %h",expected_datac,from_dut_C.out_datac); end
+			$display ($time, " : ERROR! : PORT-C overflow/underflow or invalid command %h\n",from_dut_C.out_respc);
+		end
+		else if (from_dut_C.out_respc==2'b11)
+			$display ($time, " : ERROR! : PORT-C unsued response %h\n",from_dut_C.out_respc);
+		else if (from_dut_C.out_respc==2'b10 && expected_respc==2'b10)
+			$display ($time, " : ERROR! : PORT-C overflow/underflow or invalid command %h\n",from_dut_C.out_respc);
+		else if (from_dut_C.out_respc==2'b01 && expected_respc==2'b01)
+		  $display ($time, " : Match : PORT-C Response match %h\n",from_dut_C.out_respc);
+		else 
+		begin
+		 if (to_dut.reqcmd_c ==10) begin
+		   if ((expected_datac != from_dut_C.out_datac ) && (expected_tagc != from_dut_C.out_tag_c)) 
+		  $display ($time, " : ERROR! Both Data and Tag doesnot match: PORT-C expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_datac,from_dut_C.out_datac,expected_tagc,from_dut_C.out_tag_c);
+      else	if ((expected_datac != from_dut_C.out_datac ) && (expected_tagc == from_dut_C.out_tag_c)) 
+			$display ($time, " : ERROR! Data doesnot match but Tag match: PORT-C expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_datac,from_dut_C.out_datac,expected_tagc,from_dut_C.out_tag_c);
+			else if ((expected_datac == from_dut_C.out_datac ) && (expected_tagc != from_dut_C.out_tag_c)) 
+			  $display ($time, " : ERROR! Data match but Tag doesnot match: PORT-C expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_datac,from_dut_C.out_datac,expected_tagc,from_dut_C.out_tag_c);
+	    else 
+			begin
+				$display($time, " : Both Data and Tag match at PORT-C");
+				$display ($time, " : Congrats on data and tag Match!! : PORT-C expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_datac,from_dut_C.out_datac,expected_tagc,from_dut_C.out_tag_c); 
+				correct1++;
+			end
+			end
+		 else
+		   if (expected_tagc != from_dut_C.out_tag_c) 
+		 $display ($time, " : ERROR! Tag doesnot match: PORT-C expected tag : %h output_tag: %h\n",expected_tagc,from_dut_C.out_tag_c);
+      else	if (expected_tagc == from_dut_C.out_tag_c)
+			$display ($time, " :  Tag match: PORT-C expected tag : %h output_tag: %h\n",expected_tagc,from_dut_C.out_tag_c);
+		
+	 	end	
+		
+		// Check the actual and expected values
+		// PORT-D
+		if(from_dut_D.out_respd==2'b00)
+		begin
+		  if(to_dut.reqcmd_d == 10) begin
+			$display ($time, " : ERROR! : PORT-D : expected datad : %h  output_datad : %h",expected_datad,from_dut_D.out_datad); end
+			$display ($time, " : ERROR! : PORT-D overflow/underflow or invalid command %h\n",from_dut_D.out_respd);
+		end
+		else if (from_dut_D.out_respd==2'b11)
+			$display ($time, " : ERROR! : PORT-D unsued response %h\n",from_dut_D.out_respd);
+		else if (from_dut_D.out_respd==2'b10 && expected_respd==2'b10)
+			$display ($time, " : ERROR! : PORT-D overflow/underflow or invalid command %h\n",from_dut_D.out_respd);
+		else if (from_dut_D.out_respd==2'b01 && expected_respd==2'b01)
+		  $display ($time, " : Match : PORT-D Response match %h\n",from_dut_D.out_respd);
+		else 
+		begin
+		 if (to_dut.reqcmd_d ==10) begin
+		   if ((expected_datad != from_dut_D.out_datad ) && (expected_tagd != from_dut_D.out_tag_d)) 
+		  $display ($time, " : ERROR! Both Data and Tag doesnot match: PORT-D expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_datad,from_dut_D.out_datad,expected_tagd,from_dut_D.out_tag_d);
+      else	if ((expected_datad != from_dut_D.out_datad ) && (expected_tagd == from_dut_D.out_tag_d)) 
+			$display ($time, " : ERROR! Data doesnot match but Tag match: PORT-D expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_datad,from_dut_D.out_datad,expected_tagd,from_dut_D.out_tag_d);
+			else if ((expected_datad == from_dut_D.out_datad ) && (expected_tagd != from_dut_D.out_tag_d)) 
+			  $display ($time, " : ERROR! Data match but Tag doesnot match: PORT-D expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_datad,from_dut_D.out_datad,expected_tagd,from_dut_D.out_tag_d);
+	    else 
+			begin
+				$display($time, " : Both Data and Tag match at PORT-D");
+				$display ($time, " : Congrats on data and tag Match!! : PORT-D expected data : %h  output_data : %h expected tag : %h output_tag: %h\n",expected_datad,from_dut_D.out_datad,expected_tagd,from_dut_D.out_tag_d); 
+				correct1++;
+			end
+			end
+		 else
+		   if (expected_tagd != from_dut_D.out_tag_d) 
+		 $display ($time, " : ERROR! Tag doesnot match: PORT-D expected tag : %h output_tag: %h\n",expected_tagd,from_dut_D.out_tag_d);
+      else	if (expected_tagd == from_dut_D.out_tag_d)
+			$display ($time, " :  Tag match: PORT-D expected tag : %h output_tag: %h\n",expected_tagd,from_dut_D.out_tag_d);
+		
+	 	end	
+		
+	endtask : expected_output	
+
+	// Main Task: 
+	task main(); 
+  
+		$display("\n",$time," : scoreboard for %d transactions", max_trans_cnt);
+ 
+	forever 
+	begin
+   
+		gen2scb.get(to_dut);	// get the values from the driver 
+		
+		mon2scb_A.get(from_dut_A);  // get the values from the monitor
+		mon2scb_B.get(from_dut_B);  // get the values from the monitor
+		mon2scb_C.get(from_dut_C);  // get the values from the monitor
+		mon2scb_D.get(from_dut_D);  // get the values from the monitor
+  
+		to_dut.print_trans("Scoreboard vals from generator");
+		from_dut_A.print_response("Scoreboard vals from DUT PORT-A");
+		from_dut_B.print_response("Scoreboard vals from DUT PORT-B");
+		from_dut_C.print_response("Scoreboard vals from DUT PORT-C");
+		from_dut_D.print_response("Scoreboard vals from DUT PORT-D");
+	
+		fork 
+			expected_output();
+		join
+		 
+		if(--max_trans_cnt<1) 
+		begin
+			-> ended;
+		end 
+	end
+endtask: main
+
+endclass: scoreboard
+
+// ----------------------------------------------------------------------------
+// End of scoreboard.sv
+// ----------------------------------------------------------------------------

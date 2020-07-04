@@ -1,0 +1,154 @@
+# //  Questa Sim-64
+# //  Version 10.1e linux_x86_64 Jun 11 2013
+# //
+# //  Copyright 1991-2013 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+project open /nfs/home/a/a_prabak/Questa/FHV_FINAL/calc_2_test3/calc_2_test3
+# Loading project calc_2_test3
+vsim work.top
+# vsim work.top 
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: hdl/calc2_top.v(275): (vopt-2685) [TFMPC] - Too few port connections for 'priority1'.  Expected 41, found 40.
+# Loading sv_std.std
+# Loading work.top(fast)
+# Loading work.calc_if(fast)
+# Loading work.A(fast)
+# Loading work.test(fast)
+# Loading work.calc2_top(fast)
+# Loading work.priority(fast)
+add wave -position insertpoint sim:/top/cif/*
+run
+#                    0 : ------------starting calc driver----------
+# 
+# 
+#                    0 : scoreboard for           1 transactions
+run
+run
+#                  250 : reset complete 
+# 
+#                  250 : max transaction count =           1 
+# 
+#  Coverage
+#                  250 : generator transaction count no.           0
+#                  250 : generator PORTA opcode :  5  dataa : 000affff datab : 00000000	tag: 0 ALU_count_a:           0 Shift_count_a:           1 nop_count_a:           0
+#                  250 : generator PORTB opcode :  5  dataa : 000affff datab : 00000004	tag: 2 ALU_count_b:           0 Shift_count_b:           1 nop_count_b:           0
+#                  250 : generator PORTC opcode :  5  dataa : ffffffff datab : 000000ff	tag: 1 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                  250 : generator PORTD opcode :  5  dataa : 11111111 datab : 000000aa	tag: 3 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+#                  250 : generator to scoreboard PORTA opcode :  5  dataa : 000affff datab : 00000000	tag: 0 ALU_count_a:           0 Shift_count_a:           1 nop_count_a:           0
+#                  250 : generator to scoreboard PORTB opcode :  5  dataa : 000affff datab : 00000004	tag: 2 ALU_count_b:           0 Shift_count_b:           1 nop_count_b:           0
+#                  250 : generator to scoreboard PORTC opcode :  5  dataa : ffffffff datab : 000000ff	tag: 1 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                  250 : generator to scoreboard PORTD opcode :  5  dataa : 11111111 datab : 000000aa	tag: 3 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+#                  250 : ending generator
+# 
+#                  250 : Driver PORTA opcode :  5  dataa : 000affff datab : 00000000	tag: 0 ALU_count_a:           0 Shift_count_a:           1 nop_count_a:           0
+#                  250 : Driver PORTB opcode :  5  dataa : 000affff datab : 00000004	tag: 2 ALU_count_b:           0 Shift_count_b:           1 nop_count_b:           0
+#                  250 : Driver PORTC opcode :  5  dataa : ffffffff datab : 000000ff	tag: 1 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                  250 : Driver PORTD opcode :  5  dataa : 11111111 datab : 000000aa	tag: 3 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+run
+# 
+#                  350 : ------------Sending data-1 on all port of dut----------
+# 
+#                  350: 1 trans.my_cmda 5
+#                  350: 1 trans.my_dataa 000affff
+#                  350: 1 trans.reqtag_a 0
+#                  350: 2 trans.my_cmdb 5
+#                  350: 2 trans.my_datab 000affff
+#                  350: 2 trans.reqtag_b 2
+#                  350: 3 trans.my_cmdc 5
+#                  350: 3 trans.my_datac ffffffff
+#                  350: 3 trans.reqtag_c 1
+#                  350: 4 trans.my_cmdd 5
+#                  350: 4 trans.my_datad 11111111
+#                  350: 4 trans.reqtag_d 3
+# 
+run
+# 
+#                  450 : ------------Sending data-2 on all port of dut----------
+# 
+#                  450: 1 trans.my_cmda 5
+#                  450 : 1 trans.my_datab 00000000
+#                  450: 2 trans.my_cmdb 5
+#                  450 : 2 trans.my_datab 00000004
+#                  450: 3 trans.my_cmdc 5
+#                  450 : 3 trans.my_datab 000000ff
+#                  450: 4 trans.my_cmdd 5
+#                  450 : 4 trans.my_datab 000000aa
+# 
+run
+run
+run
+# 
+#                  750   ----------Monitor Recieving data from Port -A out of Dut----------
+#                  750 : out_respa 1
+#                  750 : out_dataa 000a7fff
+#                  750 : out_tag_a 0
+run
+# 
+#                  850   ----------Monitor Recieving data from Port -B out of Dut----------
+#                  850 : out_respb 1
+#                  850 : out_datab 00af7ff0
+#                  850 : out_tag_b 2
+run
+# 
+#                  950   ----------Monitor Recieving data from Port -C out of Dut----------
+#                  950 : out_respc 1
+#                  950 : out_datac 80000000
+#                  950 : out_tag_c 1
+run
+# 
+#                 1050   ----------Monitor Recieving data from Port -D out of Dut----------
+#                 1050 : out_respd 1
+#                 1050 : out_datad 44444400
+#                 1050 : out_tag_d 3
+# 
+#                 1050 : Scoreboard vals from generator PORTA opcode :  5  dataa : 000affff datab : 00000000	tag: 0 ALU_count_a:           0 Shift_count_a:           1 nop_count_a:           0
+#                 1050 : Scoreboard vals from generator PORTB opcode :  5  dataa : 000affff datab : 00000004	tag: 2 ALU_count_b:           0 Shift_count_b:           1 nop_count_b:           0
+#                 1050 : Scoreboard vals from generator PORTC opcode :  5  dataa : ffffffff datab : 000000ff	tag: 1 ALU_count_c:           0 Shift_count_c:           1 nop_count_c:           0
+#                 1050 : Scoreboard vals from generator PORTD opcode :  5  dataa : 11111111 datab : 000000aa	tag: 3 ALU_count_d:           0 Shift_count_d:           1 nop_count_d:           0
+# 
+#                 1050 : Scoreboard vals from DUT PORT-A PORTA response : 1  out-data1 : 000a7fff out-tag1 : 0
+#                 1050 : Scoreboard vals from DUT PORT-B PORTB response : 1  out-data2 : 00af7ff0 out-tag2 : 2
+#                 1050 : Scoreboard vals from DUT PORT-C PORTC response : 1  out-data3 : 80000000 out-tag3 : 1
+#                 1050 : Scoreboard vals from DUT PORT-D PORTD response : 1  out-data4 : 44444400 out-tag4 : 3
+# 
+#                 1050 : ERROR! Data doesnot match but Tag match: PORT-A expected data : 000affff  output_data : 000a7fff expected tag : 0 output_tag: 0
+# 
+#                 1050 : ERROR! Data doesnot match but Tag match: PORT-B expected data : 00affff0  output_data : 00af7ff0 expected tag : 2 output_tag: 2
+# 
+#                 1050 : Both Data and Tag match at PORT-C
+#                 1050 : Congrats on data and tag Match!! : PORT-C expected data : 80000000  output_data : 80000000 expected tag : 1 output_tag : 1
+# 
+#                 1050 : Both Data and Tag match at PORT-D
+#                 1050 : Congrats on data and tag Match!! : PORT-D expected data : 44444400  output_data : 44444400 expected tag : 3 output_tag : 3
+# 
+# ** Note: $finish    : test/test.sv(24)
+#    Time: 1050 ns  Iteration: 1  Instance: /top/t1
+# 1
+# Break in Module test at test/test.sv line 24
+run
+# 1
+# Simulation stop requested.
+run
+#                 1150 : monitor PORTB response : 1  out-data2 : 00af7ff0 out-tag2 : 2
+#                 1150 : monitor PORTC response : 1  out-data3 : 80000000 out-tag3 : 1
+#                 1150 : monitor PORTD response : 1  out-data4 : 44444400 out-tag4 : 3
+# 
+run
+run
+run
+run
+run
+run
+run
+# 
+#                 1850   ----------Monitor Recieving data from Port -A out of Dut----------
+#                 1850 : out_respa 1
+#                 1850 : out_dataa 00000000
+#                 1850 : out_tag_a 0
+run
+make questa_batch
